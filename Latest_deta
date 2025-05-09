@@ -1,0 +1,369 @@
+/More recent original training data
+/May 10
+
+参数配置:
+data_root: bigearthnet/Mini Data
+json_root: None
+img_size: 128
+in_channels: 3
+train_ratio: 0.8
+aug_prob: 0.7
+advanced_augmentation: True
+analyze_minority: True
+model_type: resnet_plus
+task_weights: [0.7, 0.3]
+loss_type: ce
+weighted_loss: False
+focal_gamma: 2.0
+optimizer: adam
+lr: 0.001
+min_lr: 1e-06
+weight_decay: 0.0001
+lr_scheduler: plateau
+scheduler_patience: 2
+scheduler_step_size: 10
+batch_size: 8
+epochs: 10
+patience: 3
+seed: 42
+no_cuda: False
+resume: None
+save_interval: 5
+output_dir: bigearthnet/output
+num_workers: 4
+
+
+
+参数配置:
+data_root: bigearthnet/Mini Data
+json_root: None
+img_size: 128
+in_channels: 3
+train_ratio: 0.8
+aug_prob: 0.7
+advanced_augmentation: True
+analyze_minority: True
+model_type: resnet_plus
+task_weights: [0.7, 0.3]
+loss_type: ce
+weighted_loss: False
+focal_gamma: 2.0
+optimizer: adam
+lr: 0.001
+min_lr: 1e-06
+weight_decay: 0.0001
+lr_scheduler: plateau
+scheduler_patience: 2
+scheduler_step_size: 10
+batch_size: 8
+epochs: 10
+patience: 3
+seed: 42
+no_cuda: False
+resume: None
+save_interval: 5
+output_dir: bigearthnet/output
+num_workers: 0
+
+
+使用设备: cpu
+数据增强设置: 概率=0.7, 高级模式=True
+训练集大小: 62, 验证集大小: 16
+已应用改进的数据增强到训练集
+使用模型: resnet_plus
+/Users/inkling/miniforge3/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:28: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn("The verbose parameter is deprecated. Please use get_last_lr() "
+分析数据集中的少数类...
+/Users/inkling/miniforge3/lib/python3.12/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+位置分布: [0.4375, 0.375, 0.1875]
+少数类位置: []
+开始训练...
+
+Epoch 1/10
+Training: 100%|███████████████████████████████████████████| 8/8 [00:27<00:00,  3.50s/it, loss=1.23, pos_acc=0.323, grade_mae=1.52]
+/Users/inkling/miniforge3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+训练损失: 1.5780, 位置准确率: 0.3226, 等级MAE: 1.5186
+验证损失: 1.6913, 位置准确率: 0.1875 (F1: 0.1053), 等级MAE: 1.7018 (容忍率: 1.0000)
+验证分数提高: (-inf --> 0.105263)
+保存最佳模型 (基于位置F1分数).
+
+Epoch 2/10
+Training:   0%|                                                                                             | 0/8 [00:00<?, ?it/s]/Users/inkling/miniforge3/lib/python3.12/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+Training: 100%|█████████████████████████████████████████| 8/8 [00:27<00:00,  3.46s/it, loss=0.923, pos_acc=0.371, grade_mae=0.805]
+/Users/inkling/miniforge3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+训练损失: 1.0579, 位置准确率: 0.3710, 等级MAE: 0.8048
+验证损失: 1.4776, 位置准确率: 0.1875 (F1: 0.1053), 等级MAE: 1.4739 (容忍率: 1.0000)
+早停计数器: 1/3
+
+Epoch 3/10
+Training:   0%|                                                                                             | 0/8 [00:00<?, ?it/s]/Users/inkling/miniforge3/lib/python3.12/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+Training: 100%|█████████████████████████████████████████| 8/8 [00:27<00:00,  3.47s/it, loss=0.685, pos_acc=0.355, grade_mae=0.466]
+/Users/inkling/miniforge3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+训练损失: 0.8349, 位置准确率: 0.3548, 等级MAE: 0.4665
+验证损失: 1.3488, 位置准确率: 0.1875 (F1: 0.1053), 等级MAE: 1.1448 (容忍率: 1.0000)
+早停计数器: 2/3
+
+Epoch 4/10
+Training:   0%|                                                                                             | 0/8 [00:00<?, ?it/s]/Users/inkling/miniforge3/lib/python3.12/site-packages/rasterio/__init__.py:356: NotGeoreferencedWarning: Dataset has no geotransform, gcps, or rpcs. The identity matrix will be returned.
+  dataset = DatasetReader(path, driver=driver, sharing=sharing, **kwargs)
+Training: 100%|█████████████████████████████████████████| 8/8 [00:27<00:00,  3.50s/it, loss=0.534, pos_acc=0.726, grade_mae=0.494]
+/Users/inkling/miniforge3/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", len(result))
+训练损失: 0.5661, 位置准确率: 0.7258, 等级MAE: 0.4941
+验证损失: 1.5694, 位置准确率: 0.1875 (F1: 0.1053), 等级MAE: 0.8382 (容忍率: 1.0000)
+早停计数器: 3/3
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:455: RuntimeWarning: invalid value encountered in divide
+  cm_norm_precision = cm.astype('float') / col_sums[np.newaxis, :]
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 37096 (\N{CJK UNIFIED IDEOGRAPH-90E8}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 20013 (\N{CJK UNIFIED IDEOGRAPH-4E2D}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 37096 (\N{CJK UNIFIED IDEOGRAPH-90E8}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 20013 (\N{CJK UNIFIED IDEOGRAPH-4E2D}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 30495 (\N{CJK UNIFIED IDEOGRAPH-771F}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 23454 (\N{CJK UNIFIED IDEOGRAPH-5B9E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 26631 (\N{CJK UNIFIED IDEOGRAPH-6807}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 31614 (\N{CJK UNIFIED IDEOGRAPH-7B7E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 20301 (\N{CJK UNIFIED IDEOGRAPH-4F4D}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 32622 (\N{CJK UNIFIED IDEOGRAPH-7F6E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 20998 (\N{CJK UNIFIED IDEOGRAPH-5206}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 31867 (\N{CJK UNIFIED IDEOGRAPH-7C7B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 28151 (\N{CJK UNIFIED IDEOGRAPH-6DF7}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 28102 (\N{CJK UNIFIED IDEOGRAPH-6DC6}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 30697 (\N{CJK UNIFIED IDEOGRAPH-77E9}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 38453 (\N{CJK UNIFIED IDEOGRAPH-9635}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 39044 (\N{CJK UNIFIED IDEOGRAPH-9884}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 27979 (\N{CJK UNIFIED IDEOGRAPH-6D4B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 21333 (\N{CJK UNIFIED IDEOGRAPH-5355}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 20803 (\N{CJK UNIFIED IDEOGRAPH-5143}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 26684 (\N{CJK UNIFIED IDEOGRAPH-683C}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 24335 (\N{CJK UNIFIED IDEOGRAPH-5F0F}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 26679 (\N{CJK UNIFIED IDEOGRAPH-6837}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 26412 (\N{CJK UNIFIED IDEOGRAPH-672C}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 25968 (\N{CJK UNIFIED IDEOGRAPH-6570}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 21484 (\N{CJK UNIFIED IDEOGRAPH-53EC}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 22238 (\N{CJK UNIFIED IDEOGRAPH-56DE}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 29575 (\N{CJK UNIFIED IDEOGRAPH-7387}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 31934 (\N{CJK UNIFIED IDEOGRAPH-7CBE}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 30830 (\N{CJK UNIFIED IDEOGRAPH-786E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 20165 (\N{CJK UNIFIED IDEOGRAPH-4EC5}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 35282 (\N{CJK UNIFIED IDEOGRAPH-89D2}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/Desktop/ML practice2/bigearthnet/utils.py:481: UserWarning: Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path, bbox_inches='tight', dpi=300)
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 37096 (\N{CJK UNIFIED IDEOGRAPH-90E8}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 20013 (\N{CJK UNIFIED IDEOGRAPH-4E2D}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/miniforge3/lib/python3.12/site-packages/seaborn/utils.py:61: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+  fig.canvas.draw()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 19979 (\N{CJK UNIFIED IDEOGRAPH-4E0B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 37096 (\N{CJK UNIFIED IDEOGRAPH-90E8}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 20013 (\N{CJK UNIFIED IDEOGRAPH-4E2D}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 19978 (\N{CJK UNIFIED IDEOGRAPH-4E0A}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 30495 (\N{CJK UNIFIED IDEOGRAPH-771F}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 23454 (\N{CJK UNIFIED IDEOGRAPH-5B9E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 26631 (\N{CJK UNIFIED IDEOGRAPH-6807}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 31614 (\N{CJK UNIFIED IDEOGRAPH-7B7E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 20301 (\N{CJK UNIFIED IDEOGRAPH-4F4D}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 32622 (\N{CJK UNIFIED IDEOGRAPH-7F6E}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 20998 (\N{CJK UNIFIED IDEOGRAPH-5206}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 31867 (\N{CJK UNIFIED IDEOGRAPH-7C7B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 28151 (\N{CJK UNIFIED IDEOGRAPH-6DF7}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 28102 (\N{CJK UNIFIED IDEOGRAPH-6DC6}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 30697 (\N{CJK UNIFIED IDEOGRAPH-77E9}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 38453 (\N{CJK UNIFIED IDEOGRAPH-9635}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 39044 (\N{CJK UNIFIED IDEOGRAPH-9884}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:239: UserWarning: Glyph 27979 (\N{CJK UNIFIED IDEOGRAPH-6D4B}) missing from font(s) DejaVu Sans.
+  plt.savefig(save_path)
+位置F1分数在3个epoch内没有改善，停止训练。
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 35757 (\N{CJK UNIFIED IDEOGRAPH-8BAD}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 32451 (\N{CJK UNIFIED IDEOGRAPH-7EC3}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 21644 (\N{CJK UNIFIED IDEOGRAPH-548C}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 39564 (\N{CJK UNIFIED IDEOGRAPH-9A8C}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 35777 (\N{CJK UNIFIED IDEOGRAPH-8BC1}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 25439 (\N{CJK UNIFIED IDEOGRAPH-635F}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 22833 (\N{CJK UNIFIED IDEOGRAPH-5931}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 20301 (\N{CJK UNIFIED IDEOGRAPH-4F4D}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 32622 (\N{CJK UNIFIED IDEOGRAPH-7F6E}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 20998 (\N{CJK UNIFIED IDEOGRAPH-5206}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 31867 (\N{CJK UNIFIED IDEOGRAPH-7C7B}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 24615 (\N{CJK UNIFIED IDEOGRAPH-6027}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 33021 (\N{CJK UNIFIED IDEOGRAPH-80FD}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 30830 (\N{CJK UNIFIED IDEOGRAPH-786E}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 29575 (\N{CJK UNIFIED IDEOGRAPH-7387}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 31561 (\N{CJK UNIFIED IDEOGRAPH-7B49}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 32423 (\N{CJK UNIFIED IDEOGRAPH-7EA7}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 39044 (\N{CJK UNIFIED IDEOGRAPH-9884}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 27979 (\N{CJK UNIFIED IDEOGRAPH-6D4B}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 24179 (\N{CJK UNIFIED IDEOGRAPH-5E73}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 22343 (\N{CJK UNIFIED IDEOGRAPH-5747}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 32477 (\N{CJK UNIFIED IDEOGRAPH-7EDD}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 35823 (\N{CJK UNIFIED IDEOGRAPH-8BEF}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 24046 (\N{CJK UNIFIED IDEOGRAPH-5DEE}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 23481 (\N{CJK UNIFIED IDEOGRAPH-5BB9}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:293: UserWarning: Glyph 24525 (\N{CJK UNIFIED IDEOGRAPH-5FCD}) missing from font(s) DejaVu Sans.
+  plt.tight_layout()
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 35757 (\N{CJK UNIFIED IDEOGRAPH-8BAD}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 32451 (\N{CJK UNIFIED IDEOGRAPH-7EC3}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 21644 (\N{CJK UNIFIED IDEOGRAPH-548C}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 39564 (\N{CJK UNIFIED IDEOGRAPH-9A8C}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 35777 (\N{CJK UNIFIED IDEOGRAPH-8BC1}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 25439 (\N{CJK UNIFIED IDEOGRAPH-635F}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 22833 (\N{CJK UNIFIED IDEOGRAPH-5931}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 20301 (\N{CJK UNIFIED IDEOGRAPH-4F4D}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 32622 (\N{CJK UNIFIED IDEOGRAPH-7F6E}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 20998 (\N{CJK UNIFIED IDEOGRAPH-5206}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 31867 (\N{CJK UNIFIED IDEOGRAPH-7C7B}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 24615 (\N{CJK UNIFIED IDEOGRAPH-6027}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 33021 (\N{CJK UNIFIED IDEOGRAPH-80FD}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 20934 (\N{CJK UNIFIED IDEOGRAPH-51C6}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 30830 (\N{CJK UNIFIED IDEOGRAPH-786E}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 29575 (\N{CJK UNIFIED IDEOGRAPH-7387}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 31561 (\N{CJK UNIFIED IDEOGRAPH-7B49}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 32423 (\N{CJK UNIFIED IDEOGRAPH-7EA7}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 39044 (\N{CJK UNIFIED IDEOGRAPH-9884}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 27979 (\N{CJK UNIFIED IDEOGRAPH-6D4B}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 24179 (\N{CJK UNIFIED IDEOGRAPH-5E73}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 22343 (\N{CJK UNIFIED IDEOGRAPH-5747}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 32477 (\N{CJK UNIFIED IDEOGRAPH-7EDD}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 35823 (\N{CJK UNIFIED IDEOGRAPH-8BEF}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 24046 (\N{CJK UNIFIED IDEOGRAPH-5DEE}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 23481 (\N{CJK UNIFIED IDEOGRAPH-5BB9}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+/Users/inkling/Desktop/ML practice2/bigearthnet/train.py:294: UserWarning: Glyph 24525 (\N{CJK UNIFIED IDEOGRAPH-5FCD}) missing from font(s) DejaVu Sans.
+  plt.savefig(os.path.join(save_dir, 'training_metrics.png'))
+
+训练完成!
+最佳验证F1: 0.1053
+(base) inkling@INKs-MacBook ML practice2 % ls -la bigearthnet/output
+total 682800
+drwxr-xr-x   8 inkling  staff        256  5 10 01:17 .
+drwxr-xr-x  13 inkling  staff        416  5 10 00:20 ..
+-rw-r--r--   1 inkling  staff   46478820  5 10 01:16 best_model.pth
+-rw-r--r--   1 inkling  staff  139322688  5 10 01:16 checkpoint_epoch_1.pth
+-rw-r--r--   1 inkling  staff  139323584  5 10 00:50 checkpoint_epoch_6.pth
+-rw-r--r--   1 inkling  staff     109222  5 10 01:17 position_confusion_matrix_detailed.png
+-rw-r--r--   1 inkling  staff      14412  5 10 01:17 position_confusion_matrix.png
+-rw-r--r--   1 inkling  staff      93753  5 10 01:17 training_metrics.png
+(base) inkling@INKs-MacBook ML practice2 % python -c "import matplotlib.pyplot as plt; import matplotlib.image as mpimg; img = mpimg.imread('bigearthnet/output/training_metrics.png'); plt.figure(figsize=(12, 10)); plt.imshow(img); plt.title('Training Metrics'); plt.axis('off'); plt.show()"             python -c "import matplotlib.pyplot as plt; import matplotlib.image as mpimg; img = mpimg.imread('bigearthnet/output/training_metrics.png'); plt.figure(figsize=(12, 10)); plt.imshow(img); plt.title('Training Metrics'); plt.axis('off'); plt.show()"
