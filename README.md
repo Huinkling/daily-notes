@@ -1,7 +1,7 @@
 # 🌱 模型训练日志  
 📅 日期：2025-05-08  
 👤 负责人：Ink  
-📂 项目：玉米病害多任务识别模型（位置 + 等级）
+📂 项目：玉米病害多任务识别模型mini（位置 + 等级）
 
 ---
 
@@ -26,11 +26,11 @@ total_loss = 位置损失 × 0.7 + 等级损失 × 0.3
 
 | 指标名称         | 类型     | 含义                               | 当前数据          | 评估         |
 |------------------|----------|------------------------------------|-------------------|--------------|
-| 位置准确率       | 分类     | 模型预测的位置类别是否正确         | 训练: 69.4%, 验证: 43.8% | 👍 较好       |
-| 位置 F1 分数     | 分类     | 综合精度与召回，衡量偏类情况       | 验证: 0.40         | ✅ 提升中     |
-| 等级 MAE         | 回归     | 平均预测偏差（0~25）               | 训练: 0.47, 验证: 1.13 | ✅ 良好       |
-| 等级 ±2容忍率    | 回归     | 等级误差在 ±2 范围视为正确         | 验证: 100%         | 🌟 极佳       |
-| 总损失           | 综合     | 两个子任务损失加权和               | 稳定下降中         | ✅ 正常       |
+| 位置准确率       | 分类     | 模型预测的位置类别是否正确         | 训练: 69.4%, 验证: 43.8% | 较好 |
+| 位置 F1 分数     | 分类     | 综合精度与召回，衡量偏类情况       | 验证: 0.40         | 中 |
+| 等级 MAE         | 回归     | 平均预测偏差（0~25）               | 训练: 0.47, 验证: 1.13 | 较好 |
+| 等级 ±2容忍率    | 回归     | 等级误差在 ±2 范围视为正确         | 验证: 100%         | 好 |
+| 总损失           | 综合     | 两个子任务损失加权和               | 稳定下降中         | 中 |
 
 ---
 
@@ -84,11 +84,11 @@ total_loss = 位置损失 × 0.7 + 等级损失 × 0.3
 
 | Metric Name         | Type     | Meaning                                              | Current Values                  | Evaluation     |
 |---------------------|----------|------------------------------------------------------|----------------------------------|----------------|
-| Position Accuracy   | Classif. | % of correctly predicted position classes            | Train: 69.4%, Val: 43.8%         | 👍 Fair         |
-| Position F1 Score   | Classif. | Balance of precision and recall                      | Val: 0.40                        | ✅ Improving    |
-| Grade MAE           | Regr.    | Average error in severity grade (0–25)               | Train: 0.47, Val: 1.13           | ✅ Good         |
-| Grade ±2 Tolerance  | Regr.    | % of predictions within ±2 of the ground truth label | Val: 100%                        | 🌟 Excellent    |
-| Total Loss          | Combined | Weighted sum of position and grade losses            | Decreasing steadily              | ✅ Normal       |
+| Position Accuracy   | Classif. | % of correctly predicted position classes            | Train: 69.4%, Val: 43.8%         | Fair         |
+| Position F1 Score   | Classif. | Balance of precision and recall                      | Val: 0.40                        | Improving    |
+| Grade MAE           | Regr.    | Average error in severity grade (0–25)               | Train: 0.47, Val: 1.13           | Good         |
+| Grade ±2 Tolerance  | Regr.    | % of predictions within ±2 of the ground truth label | Val: 100%                        | Excellent    |
+| Total Loss          | Combined | Weighted sum of position and grade losses            | Decreasing steadily              | Normal       |
 
 ---
 
