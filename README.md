@@ -54,60 +54,105 @@ total_loss = 位置损失 × 0.7 + 等级损失 × 0.3
 - 使用数据增强补充位置小类样本
 - 启用 EarlyStopping 和自适应学习率策略
 
+# 🌱 模型训练日志  
+📅 日期：2025-05-11
+👤 负责人：Ink  
 
-  # 🌱 Model Training Log  
-📅 Date: 2025-05-08  
-👤 Author: Ink  
-📂 Project: Corn Disease Multi-Task Recognition (Position + Severity)
+## 训练思路
 
----
-
-## 🎯 Current Training Strategy
-
-- Using a ResNet-Plus architecture for multi-task learning:
-  - Task 1: Disease position classification (multi-class Softmax)
-  - Task 2: Disease severity prediction (regression from 0 to 25)
-- Weighted multi-task loss function:
-- total_loss = position_loss × 0.7 + grade_loss × 0.3
-- - Input: satellite images  
-- Labels: from 14l, 14m, 14t datasets
+### 目标：
+- **训练全部样本数据**：在 `14l/m/t` 小样本训练的基础上，**扩展到 9 类数据集**（`9l`, `9m`, `9t`, `14l`, `14m`, `14t`, `19l`, `19m`, `19t`）。
+- **修正目标标签**：将标签维度从 `(batch_size, 1)` 修正为 `(batch_size,)`，确保与模型输出匹配。
+- **启用混合精度训练**：使用 **FP16** 训练，利用 RTX 6000 的 **Tensor Cores** 加速计算，减少显存占用。
+- **优化模型性能**：通过数据预处理、`num_workers` 增加、混合精度训练等方法，提高训练速度和模型泛化能力。
 
 ---
 
-## 🎯 Current Phase Objective
+## 训练目标
 
-**Focus on improving generalization of the position task, while keeping grade task stable**
+1. **位置任务**：
+   - **预测感染部位**（下部、中部、上部）  
+   - 目标：尽可能提高位置准确率（`Position Accuracy`）和 F1 分数（`Position F1`）。
+   
+2. **等级任务**：
+   - **预测病害等级**（0、3、5、7、9）  
+   - 目标：尽可能减少 MAE（`Mean Absolute Error`），并提高分类准确性。
 
----
-
-## 📊 Training Metrics
-
-| Metric Name         | Type     | Meaning                                              | Current Values                  | Evaluation     |
-|---------------------|----------|------------------------------------------------------|----------------------------------|----------------|
-| Position Accuracy   | Classif. | % of correctly predicted position classes            | Train: 69.4%, Val: 43.8%         | Fair         |
-| Position F1 Score   | Classif. | Balance of precision and recall                      | Val: 0.40                        | Improving    |
-| Grade MAE           | Regr.    | Average error in severity grade (0–25)               | Train: 0.47, Val: 1.13           | Good         |
-| Grade ±2 Tolerance  | Regr.    | % of predictions within ±2 of the ground truth label | Val: 100%                        | Excellent    |
-| Total Loss          | Combined | Weighted sum of position and grade losses            | Decreasing steadily              | Normal       |
+3. **混合精度训练**：
+   - 利用 **RTX 6000** 显卡的 **Tensor Cores**，通过 **FP16**（混合精度训练）加速训练，减少内存占用。
 
 ---
 
-## 📌 Dataset Size & Limitations
+## 训练指标与含义
 
-| Item                  | Current Status      | Notes                                       |
-|-----------------------|---------------------|---------------------------------------------|
-| Training Set Size     | 62 images           | Small, but grade prediction already stable  |
-| Validation Set Size   | 16 images           | Small, metrics may fluctuate                |
-| Position Label Balance| Possibly imbalanced | Some position classes never predicted       |
-| Grade Label Structure | Integer 0–25, 0 = healthy | Modeled as regression (ordinal meaning) |
+| 指标 | 含义 | 描述 |
+|------|------|------|
+| **训练损失 (Loss)** | 训练误差 | 衡量模型在训练数据上的拟合程度，越低越好 |
+| **验证损失 (Val Loss)** | 验证误差 | 衡量模型在验证集上的泛化能力，越低越好 |
+| **位置准确率 (Position Accuracy)** | 正确预测感染部位的比例 | 用于评估模型在预测感染部位任务上的精度 |
+| **位置 F1 分数 (Position F1)** | 位置预测的精确度和召回率综合分数 | 更全面衡量位置任务的预测能力 |
+| **等级 MAE (Grade MAE)** | 预测的病害等级与真实值之间的平均绝对误差 | 衡量等级任务预测的准确度，越低越好 |
 
 ---
 
-## ✅ Summary & Recommendations
+## 训练日志关键数据
 
-- ✅ Grade task is well-trained and stable;
-- ⚠️ Position task shows promising F1 progress — continue monitoring;
-- Next steps:
-- Add confusion matrix visualization
-- Apply data augmentation to rare position classes
-- Use EarlyStopping and learning rate scheduler
+### 训练集：
+| 指标 | 当前值 | 上一轮 | 变化幅度 | 评价 |
+|------|--------|--------|----------|------|
+| **训练损失** | 1.3215 | 2.0083 | **下降了 34%** | 显著进步，说明模型开始有效拟合 |
+| **位置准确率** | 0.3893 | 0.3370 | **提高了 5%** | 正在逐步提升，但仍低于理想值（0.5） |
+| **位置 F1 分数** | 0.3584 | 0.2901 | **提高了 7%** | 位置任务仍需优化，但已超过随机水平 |
+| **等级 MAE** | 1.3864 | 1.7982 | **下降了 23%** | 病害等级预测的误差显著下降，开始更准确拟合 |
+
+### 验证集：
+| 指标 | 当前值 | 上一轮 | 变化幅度 | 评价 |
+|------|--------|--------|----------|------|
+| **验证损失** | 1.2371 | 1.7918 | **下降了 31%** | 验证集表现改善，模型泛化性增强 |
+| **位置准确率** | 0.3956 | 0.2967 | **提升了 10%** | 位置任务有效提升，训练模型开始收敛 |
+| **位置 F1 分数** | 0.3584 | 0.2901 | **提高了 7%** | 继续提升，表现比随机猜测好 |
+| **等级 MAE** | 1.3926 | 1.7268 | **下降了 19%** | 验证集病害等级预测误差逐步减少，模型学习到更多规律 |
+
+---
+
+## 训练进展总结
+
+- **训练损失显著下降**，验证损失也随之减少，说明模型开始从训练数据中学习到有效特征，并且能够在验证集上泛化。
+- **位置准确率和 F1 分数**有了**可观提升**，但是仍然低于理想值（>0.5），这意味着模型还在学习过程中，但进展非常积极。
+- **等级 MAE 下降幅度大**，说明病害等级任务开始拟合，误差缩小，接近收敛。
+
+### **模型的泛化能力**：
+- 训练集和验证集的损失都在下降，验证集的准确率提升了 10%，表明模型在**过拟合问题**上得到控制，具备了一定的**泛化能力**。
+
+---
+
+## 下一步策略
+
+### 1. **继续训练**：
+   - **观察第 5~10 轮**的进一步进展，特别是位置任务的准确率和 F1 分数是否能进一步提高。
+
+### 2. **优化数据加载**：
+   - 如果仍有 I/O 瓶颈，尝试增加 `num_workers`，并且使用 `.npy` 或 `.pt` 格式的数据，减少 I/O 延迟。
+
+### 3. **标签修正**：
+   - 已修正标签维度问题，确保目标标签和模型输出一致，避免再出现维度不匹配警告。
+
+### 4. **混合精度训练**：
+   - 在 RTX 6000 上开启混合精度训练，利用 **FP16** 提升训练速度和减少显存占用。
+   - 检查训练速度的变化，并确认显存是否有改善。
+
+### 5. **监控指标**：
+   - 持续监控 **位置准确率** 和 **等级 MAE** 的变化，判断是否有继续优化的空间。
+
+---
+
+## 总结
+
+- **整体训练进展非常正常且有明显提升**，第一轮已经显著下降，后续训练继续观察提升空间。
+- 混合精度训练和标签维度修正将进一步提高模型训练效率和精度。
+
+---
+
+如果你需要进一步优化训练策略或配置训练流程，随时告诉我！
+
+ 
